@@ -14,6 +14,7 @@ namespace TicTacToeGame.Presentation
             char[,] Grid = gameController.GetBoard();
 
             // Printing the Tic Tac Toe Game Board 
+
             Console.WriteLine($"\n*******************\n|  {Grid[0, 0]}  |  {Grid[0, 1]}  |  {Grid[0, 2]} " +
                 $" |\n|*****************|\n| " +
                 $" {Grid[1, 0]}  |  {Grid[1, 1]}  |  {Grid[1, 2]} " +

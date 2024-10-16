@@ -42,7 +42,9 @@ namespace TicTacToeGame.Presentation
             try
             {
                 int userInput = int.Parse(Console.ReadLine());
-                if (userInput < 1 || userInput > 9)
+                if (userInput == 1234)
+                    return userInput;
+                else if (userInput < 1 || userInput > 9)
                     throw new InvalidUserInputException("Please Enter the Correct Input 1 to 9 Only.");
                 else if (board.IsPositionEmpty(userInput))
                     throw new PositionIsNotEmptyException("\nThe Selected Position is already Occupied Please Choose Another Position");
@@ -80,7 +82,5 @@ namespace TicTacToeGame.Presentation
                 return GetUserDecisionOnPlayAgain();
             }
         }
-
-
     }
 }

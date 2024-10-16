@@ -12,6 +12,7 @@ namespace TicTacToeGame.Models
         public string PlayerName { get; set; }
         public char Symbol { get; set; }
 
+        // Player Constructor
         public Player(int id,string name, char symbol)
         {
             Id = id;
@@ -19,6 +20,7 @@ namespace TicTacToeGame.Models
             Symbol = symbol;
         }
 
+        // Overriden version of ToString Method To Print Player Info.
         public override string ToString()
         {
             return $"Player{Id} Name : {PlayerName}\n" +

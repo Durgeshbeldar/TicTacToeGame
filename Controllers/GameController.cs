@@ -23,13 +23,22 @@ namespace TicTacToeGame.Controllers
         {
             try
             {
+                // If Player wants to reset.... we can make seperate method for this 
+
+                if (selectedPosition == 1234)
+                {
+                    ResetBoard();
+                    return $"\nThe Game Board Has Been Reset! Please Start Playing Again...\n";
+                }
                 if (Board.IsBoardFull())
                 {
                     IsGameOver = true;
-                    throw new BoardIsFullException("\nThe Board is already Full You Cant Place Your Move :(");
+                    throw new BoardIsFullException(
+                        "\nThe Board is already Full You Cant Place Your Move :("
+                    );
                 }
 
-                Board.UpdateBoardPosition(selectedPosition,player.Symbol);
+                Board.UpdateBoardPosition(selectedPosition, player.Symbol);
 
                 // Checking Player is Won or Not...?
 
@@ -47,46 +56,44 @@ namespace TicTacToeGame.Controllers
                     return "\n The Game is Draw...! Try Again and Congrats to Both Players\n";
                 }
                 return $"\n{player.PlayerName} is Placed Sign {player.Symbol} on Selected Position Successfully\n";
-
-            }catch(BoardIsFullException ex)
+            }
+            catch (BoardIsFullException ex)
             {
                 return ex.Message;
             }
         }
+
         public bool IsWin(char symbol)
         {
-            char[,]grid = Board.Grid;
+            char[,] grid = Board.Grid;
 
-            
             for (int i = 0; i < 3; i++)
             {
-                // Row Checking...
-
-                if (grid[i, 0] == symbol && grid[i, 1] == symbol && grid[i, 2] == symbol)
+                if (grid[i, 0] == symbol && grid[i, 1] == symbol && grid[i, 2] == symbol) // Row Checking...
                     return true;
 
-                // Column Checking...
-                if (grid[0, i] == symbol && grid[1, i] == symbol && grid[2, i] == symbol)
+                if (grid[0, i] == symbol && grid[1, i] == symbol && grid[2, i] == symbol) // Column Checking...
                     return true;
             }
 
-            // Check For Diagonals...
-
-            if (grid[0, 0] == symbol && grid[1, 1] == symbol && grid[2, 2] == symbol)
+            if (grid[0, 0] == symbol && grid[1, 1] == symbol && grid[2, 2] == symbol) // Check For Diagonals...
                 return true;
 
-            if (grid[0, 2] == symbol && grid[1, 1] == symbol && grid[2, 0] == symbol)
+            if (grid[0, 2] == symbol && grid[1, 1] == symbol && grid[2, 0] == symbol) // Check For Diagonals
                 return true;
-
             return false;
-
-        }
-        public char[,] GetBoard() 
-        { 
-            return Board.Grid; 
         }
 
+        // To Get Board in Front End..
+        public char[,] GetBoard()
+        {
+            return Board.Grid;
+        }
 
-
+        // To Proceed the Reset Request ...
+        public void ResetBoard()
+        {
+            Board.ResetBoard();
+        }
     }
 }
