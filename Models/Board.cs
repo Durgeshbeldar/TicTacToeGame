@@ -28,7 +28,7 @@ namespace TicTacToeGame.Models
             {
                 for (int j = 0; j < limit; j++)
                 {
-                    Grid[i, j] = (char)(gridPosition + '0');
+                    Grid[i, j] = ' ';
                     gridPosition++;
                 }
             }
